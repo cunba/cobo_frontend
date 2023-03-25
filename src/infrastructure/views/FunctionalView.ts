@@ -1,0 +1,1 @@
+export type FunctionalView<TViewModel> = React.FC<{ vm: TViewModel }>;
