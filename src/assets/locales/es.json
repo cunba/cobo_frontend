@@ -8,6 +8,7 @@
     "back": "Atrás",
 
     "login.title": "Inicio de sesión",
+    "login.button" : "Iniciar sesión",
     "login.label.username": "Usuario",
     "login.label.password": "Contraseña",
     "login.error.noUsername": "El usuario es obligatorio",
@@ -15,6 +16,9 @@
     "login.error.credentialsError": "El usuario o la contraseña están equivocados",
     "login.error.defaultError": "Error inesperado",
     "login.error.noUserameNoPassword": "Debe rellenar todos los campos",
+    "login.recover_password": "¿Has olvidado la contraseña?",
+    "login.sign_up": "¿No dispones de cuenta? Registrate ",
+    "login.here": "aquí",
 
     "sign_up.title": "Crear cuenta",
     "sign_up.name.label": "Nombre",

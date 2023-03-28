@@ -8,6 +8,7 @@
     "back": "Back",
 
     "login.title": "Sign in",
+    "login.button" : "Sign in",
     "login.label.username": "Username",
     "login.label.password": "Password",
     "login.error.noUsername": "The username is mandatory",
@@ -15,6 +16,9 @@
     "login.error.credentialsError": "The username or the password are wrong",
     "login.error.defaultError": "Unexpected error",
     "login.error.noUserameNoPassword": "You must complete all the fields",
+    "login.recover_password": "Have you forgotten your password?",
+    "login.sign_up": "Don't you have an account? Sign up ",
+    "login.here": "here",
 
     "sign_up.title": "Sign up",
     "sign_up.name.label": "Name",

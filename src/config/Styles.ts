@@ -82,3 +82,37 @@ export const commonStyles = StyleSheet.create({
         zIndex: 50
     }
 })
+
+export const formStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLORS.background,
+    },
+    title: {
+        textAlign: 'center',
+        fontSize: SIZES.title,
+        color: COLORS.text,
+        paddingBottom: 20
+    },
+    textinput: {
+        fontSize: SIZES.text,
+        width: 300,
+        height: 50,
+        color: COLORS.text,
+        paddingLeft: 20,
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 10,
+        marginBottom: 10
+    },
+    button: {
+        textAlign: 'center',
+        fontSize: SIZES.text_button,
+        width: 300,
+        paddingVertical: 10,
+        backgroundColor: COLORS.touchables,
+        borderRadius: 3
+    }
+})

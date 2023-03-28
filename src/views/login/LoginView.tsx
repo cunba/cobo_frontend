@@ -3,7 +3,7 @@ import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "reac
 import { AuthContext } from "../../App";
 import { COLORS_LIGHT } from "../../config/Colors";
 import { ROUTES } from "../../config/Constants";
-import { commonStyles } from "../../config/Styles";
+import { commonStyles, formStyles } from "../../config/Styles";
 import i18n from "../../infrastructure/localization/i18n";
 import { navigate } from "../../infrastructure/navigation/RootNavigation";
 import { FunctionalView } from "../../infrastructure/views/FunctionalView";
@@ -90,29 +90,29 @@ export const LoginView: FunctionalView<LoginViewModel> = ({ vm }) => {
     return (
         <>
             <View
-            // style={formStyles.container}
+                style={formStyles.container}
             >
                 <Text
-                // style={formStyles.title}
+                    style={formStyles.title}
                 >{i18n.t('login.title')}</Text>
                 <TextInput
                     value={vm.email}
                     autoComplete="off"
                     autoCorrect={false}
-                    // placeholder={i18n.t('login.email.label')}
+                    placeholder={i18n.t('login.label.username')!}
                     placeholderTextColor="grey"
                     onChangeText={(user: any) => vm.setEmail(user)}
-                // style={formStyles.textinput}
+                    style={formStyles.textinput}
                 />
                 <TextInput
                     value={vm.password}
                     autoComplete="off"
                     autoCorrect={false}
-                    // placeholder={i18n.t('login.password.label')}
+                    placeholder={i18n.t('login.label.password')!}
                     placeholderTextColor="grey"
                     secureTextEntry={true}
                     onChangeText={(password: any) => vm.setPassword(password)}
-                // style={formStyles.textinput}
+                    style={formStyles.textinput}
                 />
                 <TouchableOpacity onPress={recover}>
                     <Text style={[loginStyles.textRecover, { textDecorationLine: 'underline' }]}>
@@ -137,8 +137,9 @@ export const LoginView: FunctionalView<LoginViewModel> = ({ vm }) => {
                     <ActivityIndicator style={commonStyles.spinner} size='large' animating={true} color={COLORS.touchables} />
                     :
                     <TouchableOpacity
-                        // style={formStyles.button}
-                        onPress={doLogin} >
+                        style={formStyles.button}
+                        onPress={doLogin}
+                    >
                         <Text style={commonStyles.textButton}>{i18n.t('login.button')}</Text>
                     </TouchableOpacity>
                 }
