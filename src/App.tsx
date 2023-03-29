@@ -16,7 +16,6 @@ import {
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
-import { authContextFunction, bootstrapAsync, loadDataCallback, loading, state } from './AppUtils';
 import { COLORS_DARK, COLORS_LIGHT } from './config/Colors';
 import { isiOS, lightMode, ROUTES } from './config/Constants';
 import { SIZES } from './config/Sizes';

@@ -2,5 +2,7 @@
   "compilerOptions": {
       "experimentalDecorators": true
   },
-  "extends": "@tsconfig/react-native/tsconfig.json"
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "jsx": "preserve", 
+  "exclude": ["node_modules"]
 }
