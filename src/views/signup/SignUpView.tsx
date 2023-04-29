@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Alert, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { AuthContext } from "../../App";
+import { COLORS_LIGHT } from "../../config/Colors";
 import { ROUTES } from "../../config/Constants";
+import { commonStyles } from "../../config/Styles";
 import i18n from "../../infrastructure/localization/i18n";
 import { back, navigate } from "../../infrastructure/navigation/RootNavigation";
 import { FunctionalView } from "../../infrastructure/views/FunctionalView";
 import { SignUpViewModel } from "../../viewmodels/SignUpViewModel";
+import { signUpStyles } from "./SignUpStyles";
+import { Toolbar } from "../../components/Toolbar";
 
 export const SignUpView: FunctionalView<SignUpViewModel> = ({ vm }) => {
     const [showSpinner, setShowSpinner] = useState(false)
@@ -16,6 +20,8 @@ export const SignUpView: FunctionalView<SignUpViewModel> = ({ vm }) => {
     const [year, setYear] = useState('2022')
 
     const { signUp } = React.useContext(AuthContext)
+
+    const COLORS = COLORS_LIGHT
 
     useEffect(() => {
         vm.constructorFunctions()
@@ -71,181 +77,91 @@ export const SignUpView: FunctionalView<SignUpViewModel> = ({ vm }) => {
 
     return (
         <>
-            {/* <Toolbar
+            <Toolbar
                 isIconLeft={true}
                 iconLeft={iconLeftProps}
-                color={COLORS.button}
+                color={COLORS.touchables}
                 isIconRight={false}
             />
             <View style={commonStyles.container}>
                 <Text style={signUpStyles.title}>{i18n.t('sign_up.title')}</Text>
-                <View style={signUpStyles.containerInput}>
-                    <Text style={commonStyles.text}>{i18n.t('sign_up.name.label')}:</Text>
+                <TextInput
+                    value={vm.name}
+                    autoCorrect={false}
+                    placeholder={i18n.t('sign_up.name.label').toString()}
+                    placeholderTextColor={COLORS.textInputText}
+                    onChangeText={(name: any) => vm.setName(name)}
+                    style={signUpStyles.textinput}
+                />
+                <TextInput
+                    value={vm.surname}
+                    autoCorrect={false}
+                    placeholder={i18n.t('sign_up.surname.label').toString()}
+                    placeholderTextColor={COLORS.textInputText}
+                    onChangeText={(surname: any) => vm.setSurname(surname)}
+                    style={signUpStyles.textinput}
+                />
+                <TextInput
+                    value={vm.email}
+                    autoCorrect={false}
+                    placeholder={i18n.t('sign_up.email.label').toString()}
+                    placeholderTextColor={COLORS.textInputText}
+                    onChangeText={(email: any) => vm.setEmail(email)}
+                    style={signUpStyles.textinput}
+                />
+                <TextInput
+                    value={vm.password}
+                    autoCorrect={false}
+                    placeholder={i18n.t('sign_up.password.label').toString()}
+                    placeholderTextColor={COLORS.textInputText}
+                    secureTextEntry={true}
+                    onChangeText={(password: any) => vm.setPassword(password)}
+                    style={signUpStyles.textinput}
+                />
+                <TextInput
+                    value={vm.repeatPassword}
+                    autoCorrect={false}
+                    placeholder={i18n.t('sign_up.repeat_password.placeholder').toString()}
+                    placeholderTextColor={COLORS.textInputText}
+                    secureTextEntry={true}
+                    onChangeText={(password: any) => vm.setRepeatPassword(password)}
+                    style={signUpStyles.textinput}
+                />
+                <View style={signUpStyles.containerInputDate}>
                     <TextInput
-                        value={vm.name}
-                        autoCompleteType="off"
+                        value={day}
+                        dataDetectorTypes={'calendarEvent'}
                         autoCorrect={false}
-                        placeholder={i18n.t('sign_up.name.label')}
-                        placeholderTextColor="grey"
-                        onChangeText={(name: any) => vm.setName(name)}
-                        style={signUpStyles.textinput}
+                        placeholder={i18n.t('sign_up.day.label').toString()}
+                        placeholderTextColor={COLORS.textInputText}
+                        onChangeText={(day: any) => setDay(day)}
+                        style={[signUpStyles.textinput, { paddingLeft: 5, textAlign: 'center', width: 50 }]}
+                        keyboardType="numeric"
                     />
-                </View>
-                <View style={signUpStyles.containerInput}>
-                    <Text style={commonStyles.text}>{i18n.t('sign_up.surname.label')}:</Text>
+                    <Text style={[commonStyles.title, { paddingTop: 20 }]}>/</Text>
                     <TextInput
-                        value={vm.surname}
-                        autoCompleteType="off"
+                        value={month}
+                        dataDetectorTypes={'calendarEvent'}
                         autoCorrect={false}
-                        placeholder={i18n.t('sign_up.surname.label')}
-                        placeholderTextColor="grey"
-                        onChangeText={(surname: any) => vm.setSurname(surname)}
-                        style={signUpStyles.textinput}
+                        placeholder={i18n.t('sign_up.month.label').toString()}
+                        placeholderTextColor={COLORS.textInputText}
+                        onChangeText={(month: any) => setMonth(month)}
+                        style={[signUpStyles.textinput, { paddingLeft: 5, textAlign: 'center', width: 50 }]}
+                        keyboardType="numeric"
                     />
-                </View>
-                <View style={signUpStyles.containerInput}>
-                    <Text style={commonStyles.text}>{i18n.t('sign_up.email.label')}:</Text>
+                    <Text style={[commonStyles.title, { paddingTop: 20 }]}>/</Text>
                     <TextInput
-                        value={vm.email}
-                        autoCompleteType="off"
+                        value={year}
+                        dataDetectorTypes={'calendarEvent'}
                         autoCorrect={false}
-                        placeholder={i18n.t('sign_up.email.label')}
-                        placeholderTextColor="grey"
-                        onChangeText={(email: any) => vm.setEmail(email)}
-                        style={signUpStyles.textinput}
+                        placeholder={i18n.t('sign_up.year.label').toString()}
+                        placeholderTextColor={COLORS.textInputText}
+                        onChangeText={(year: any) => setYear(year)}
+                        style={[signUpStyles.textinput, { paddingLeft: 5, textAlign: 'center', width: 50 }]}
+                        keyboardType="numeric"
                     />
+                    <Text ></Text>
                 </View>
-                <View style={signUpStyles.containerInput}>
-                    <Text style={commonStyles.text}>{i18n.t('sign_up.password.label')}:</Text>
-                    <TextInput
-                        value={vm.password}
-                        autoCompleteType="off"
-                        autoCorrect={false}
-                        placeholder={i18n.t('sign_up.password.label')}
-                        placeholderTextColor="grey"
-                        secureTextEntry={true}
-                        onChangeText={(password: any) => vm.setPassword(password)}
-                        style={signUpStyles.textinput}
-                    />
-                </View>
-                <View style={signUpStyles.containerInput}>
-                    <Text style={commonStyles.text}>{i18n.t('sign_up.repeat_password.label')}:</Text>
-                    <TextInput
-                        value={vm.repeatPassword}
-                        autoCompleteType="off"
-                        autoCorrect={false}
-                        placeholder={i18n.t('sign_up.repeat_password.placeholder')}
-                        placeholderTextColor="grey"
-                        secureTextEntry={true}
-                        onChangeText={(password: any) => vm.setRepeatPassword(password)}
-                        style={signUpStyles.textinput}
-                    />
-                </View>
-                <View style={signUpStyles.containerInput}>
-                    <Text style={commonStyles.text}>{i18n.t('sign_up.birthday.label')}:</Text>
-                    <View style={signUpStyles.containerInputDate}>
-                        <TextInput
-                            value={day}
-                            dataDetectorTypes={'calendarEvent'}
-                            autoCompleteType="off"
-                            autoCorrect={false}
-                            placeholder={i18n.t('sign_up.day.label')}
-                            placeholderTextColor="grey"
-                            onChangeText={(day: any) => setDay(day)}
-                            style={[signUpStyles.textinput, { paddingLeft: 5, textAlign: 'center', width: 50 }]}
-                            keyboardType="numeric"
-                        />
-                        <Text style={[commonStyles.title, { paddingTop: 20 }]}>/</Text>
-                        <TextInput
-                            value={month}
-                            dataDetectorTypes={'calendarEvent'}
-                            autoCompleteType="off"
-                            autoCorrect={false}
-                            placeholder={i18n.t('sign_up.month.label')}
-                            placeholderTextColor="grey"
-                            onChangeText={(month: any) => setMonth(month)}
-                            style={[signUpStyles.textinput, { paddingLeft: 5, textAlign: 'center', width: 50 }]}
-                            keyboardType="numeric"
-                        />
-                        <Text style={[commonStyles.title, { paddingTop: 20 }]}>/</Text>
-                        <TextInput
-                            value={year}
-                            dataDetectorTypes={'calendarEvent'}
-                            autoCompleteType="off"
-                            autoCorrect={false}
-                            placeholder={i18n.t('sign_up.year.label')}
-                            placeholderTextColor="grey"
-                            onChangeText={(year: any) => setYear(year)}
-                            style={[signUpStyles.textinput, { paddingLeft: 5, textAlign: 'center', width: 50 }]}
-                            keyboardType="numeric"
-                        />
-                        <Text ></Text>
-                    </View>
-                </View>
-                <View style={signUpStyles.containerInput}>
-                    <Text style={commonStyles.text}>{i18n.t('sign_up.studies.label')}:</Text>
-                    <DropDownPicker
-                        key={'studiesPicker'}
-                        open={openStudiesPicker}
-                        setOpen={setOpenStudiesPicker}
-                        value={studyId}
-                        setValue={setStudyId}
-                        multiple={false}
-                        items={studies}
-                        listMode={'MODAL'}
-                        placeholder={i18n.t('sign_up.studies.placeholder')}
-                        loading={loadingStudies}
-                        style={signUpStyles.picker}
-                        placeholderStyle={{ color: 'grey' }}
-                        dropDownContainerStyle={signUpStyles.pickerContainer}
-                        containerStyle={{ width: 200 }}
-                        onOpen={onOpenStudies}
-                        zIndex={2000}
-                        zIndexInverse={1000}
-                        categorySelectable={false}
-                        listParentContainerStyle={{ borderBottomWidth: 1, borderTopWidth: 1.5 }}
-                    />
-                </View>
-                <View style={signUpStyles.containerChecked}>
-                    <BouncyCheckbox
-                        isChecked={vm.isDisorder ? true : false}
-                        onPress={() => vm.setIsDisorder(!vm.isDisorder!)}
-                        fillColor={COLORS.touchables}
-                        unfillColor={COLORS.background}
-                        text={i18n.t('sign_up.check.label')}
-                        textStyle={[commonStyles.text, { textDecorationLine: 'none' }]}
-                        size={20}
-                    />
-                </View>
-
-                {vm.isDisorder ?
-                    <View style={signUpStyles.containerInput}>
-                        <Text style={commonStyles.text}>{i18n.t('sign_up.disorder.label')}:</Text>
-                        <DropDownPicker
-                            key={'disorderPicker'}
-                            open={openDisordersPicker}
-                            setOpen={setOpenDisordersPicker}
-                            value={disorderId}
-                            setValue={setDisorderId}
-                            multiple={false}
-                            items={disorders}
-                            setItems={setDisorders}
-                            listMode={'SCROLLVIEW'}
-                            placeholder={i18n.t('sign_up.disorder.placeholder')}
-                            loading={loadingDisorders}
-                            style={signUpStyles.picker}
-                            containerStyle={{ width: 200 }}
-                            placeholderStyle={{ color: 'grey' }}
-                            dropDownContainerStyle={signUpStyles.pickerContainer}
-                            dropDownDirection={'TOP'}
-                            onOpen={onOpenDisordersPicker}
-                            zIndex={1000}
-                            zIndexInverse={2000}
-                        />
-                    </View>
-                    :
-                    <></>
-                }
 
                 {!hideErrorMessage ? (
                     <View style={{ alignItems: 'center' }}>
@@ -256,13 +172,13 @@ export const SignUpView: FunctionalView<SignUpViewModel> = ({ vm }) => {
                 ) : null}
 
                 {showSpinner ?
-                    <ActivityIndicator style={commonStyles.spinner} size='large' animating={true} color={COLORS.button} />
+                    <ActivityIndicator style={commonStyles.spinner} size='large' animating={true} color={COLORS.touchables} />
                     :
                     <TouchableOpacity style={signUpStyles.button} onPress={doSignUp} >
                         <Text style={commonStyles.textButton}>{i18n.t('sign_up.title')}</Text>
                     </TouchableOpacity>
                 }
-            </View> */}
+            </View>
         </>
     )
 }

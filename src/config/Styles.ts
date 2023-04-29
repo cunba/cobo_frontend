@@ -99,13 +99,14 @@ export const formStyles = StyleSheet.create({
     textinput: {
         fontSize: SIZES.text,
         width: 300,
-        height: 50,
-        color: COLORS.text,
+        height: 40,
+        color: COLORS.textInputText,
         paddingLeft: 20,
         borderColor: 'gray',
         borderWidth: 1,
         borderRadius: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: COLORS.textInputBackground
     },
     button: {
         textAlign: 'center',
@@ -113,6 +114,7 @@ export const formStyles = StyleSheet.create({
         width: 300,
         paddingVertical: 10,
         backgroundColor: COLORS.touchables,
-        borderRadius: 3
+        borderRadius: 3,
+        marginBottom: 10
     }
 })

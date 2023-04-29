@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ActivityIndicator, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { AuthContext } from "../../App";
-import { COLORS_LIGHT } from "../../config/Colors";
+import { COLORS_LIGHT, PALLET } from "../../config/Colors";
 import { ROUTES } from "../../config/Constants";
 import { commonStyles, formStyles } from "../../config/Styles";
 import i18n from "../../infrastructure/localization/i18n";
@@ -89,12 +89,13 @@ export const LoginView: FunctionalView<LoginViewModel> = ({ vm }) => {
 
     return (
         <>
-            <View
-                style={formStyles.container}
-            >
-                <Text
-                    style={formStyles.title}
-                >{i18n.t('login.title')}</Text>
+            <View style={formStyles.container}>
+                <View style={loginStyles.titleView}>
+                    <Text style={{ color: PALLET.pastel_blue, fontSize: 50, marginRight: 20 }}>C</Text>
+                    <Text style={{ color: PALLET.pastel_yellow, fontSize: 50, marginRight: 20 }}>O</Text>
+                    <Text style={{ color: PALLET.pastel_green, fontSize: 50, marginRight: 20 }}>B</Text>
+                    <Text style={{ color: PALLET.pastel_pink, fontSize: 50 }}>O</Text>
+                </View>
                 <TextInput
                     value={vm.email}
                     autoComplete="off"
@@ -102,7 +103,7 @@ export const LoginView: FunctionalView<LoginViewModel> = ({ vm }) => {
                     placeholder={i18n.t('login.label.username')!}
                     placeholderTextColor="grey"
                     onChangeText={(user: any) => vm.setEmail(user)}
-                    style={formStyles.textinput}
+                    style={[formStyles.textinput]}
                 />
                 <TextInput
                     value={vm.password}
@@ -140,10 +141,10 @@ export const LoginView: FunctionalView<LoginViewModel> = ({ vm }) => {
                         style={formStyles.button}
                         onPress={doLogin}
                     >
-                        <Text style={commonStyles.textButton}>{i18n.t('login.button')}</Text>
+                        <Text style={commonStyles.textButton}>{i18n.t('login.button').toUpperCase()}</Text>
                     </TouchableOpacity>
                 }
-            </View>
+            </View >
         </>
     )
 }

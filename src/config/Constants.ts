@@ -4,8 +4,8 @@ export enum ROUTES {
     LOGIN = 'Login',
     HOME = 'Home',
     SETTINGS = 'Settings',
-    SIGN_UP = 'Sign up',
-    SEND_EMAIL = 'Send email'
+    SIGN_UP = 'SignUp',
+    SEND_EMAIL = 'SendEmail'
 }
 
 export const APP = 'Cobo'

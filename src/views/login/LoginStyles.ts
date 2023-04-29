@@ -10,8 +10,16 @@ export const loginStyles = StyleSheet.create({
     textRecover: {
         textAlign: 'center',
         fontSize: SIZES.text,
-        paddingTop: 10,
-        paddingBottom: 20,
+        paddingTop: 5,
+        paddingBottom: 10,
         color: COLORS.text
     },
+    titleView: {
+        flex: 4,
+        flexDirection: 'row',
+        alignItems: "center",
+        justifyContent: "center",
+        width: 300,
+        marginTop: -10
+    }
 })
